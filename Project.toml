@@ -3,6 +3,10 @@ uuid = "c6883be7-094d-497e-95cd-455265cf1710"
 authors = ["Shawn Monel <smonel@mit.edu> and contributors"]
 version = "0.1.0"
 
+[deps]
+Graphs = "86223c79-3864-5bf0-83f7-82e725a168b6"
+HashCode2014 = "7bbed249-721d-42ac-b1f6-7cf884be0fbe"
+
 [compat]
 julia = "1.8"
 
