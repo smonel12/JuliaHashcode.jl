@@ -23,7 +23,7 @@ Runs a greedy algorithm for each car to find the best paths to achieve the highe
 function greedy_algo(problem::City)
     (; total_duration, n_cars, start_point, neighboring_streets, streets, visited) = problem
     itineraries = Vector{Vector{Int}}(undef, n_cars)
-    depth = 15
+    depth = 14
     paths = Vector{Car}(undef, n_cars)
     visited_streets = deepcopy(visited)
     # Creates a struct for each car

@@ -3,7 +3,7 @@ using Graphs
 
 """
     City
-Store a city made of [`Street`](@ref)s, along with additional instance parameters.
+Store a city made of Streets, along with additional instance parameters.
 # Fields
 - `total_duration::Int`: total time allotted for the car itineraries (in seconds)
 - `n_cars::Int`: number of cars in the fleet
@@ -38,10 +38,11 @@ function City(data::AbstractString)
         )
     end
 
-    g = SimpleDiGraph()
+    g = SimpleGraph()
     neighbors = Dict{Int,Vector{Street}}()
     visited = Dict{Street,Bool}()
     for start in streets
+        add_edge!(g, start.endpointA, start.endpointB)
         if haskey(neighbors, start.endpointA) == false
             candidates = [
                 street for (s, street) in enumerate(streets) if
