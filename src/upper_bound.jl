@@ -9,7 +9,7 @@ function prove_upper_bound()
     city = read_problem()
     n_cars = city.n_cars
     distance, duration = calculate_totals(city)
-    return duration < city.total_duration
+    return duration < city.total_duration * n_cars
 end
 
 """
