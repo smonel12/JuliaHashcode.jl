@@ -1,5 +1,4 @@
 using HashCode2014
-using Graphs
 
 """
     City
@@ -38,11 +37,9 @@ function City(data::AbstractString)
         )
     end
 
-    g = SimpleGraph()
     neighbors = Dict{Int,Vector{Street}}()
     visited = Dict{Street,Bool}()
     for start in streets
-        add_edge!(g, start.endpointA, start.endpointB)
         if haskey(neighbors, start.endpointA) == false
             candidates = [
                 street for (s, street) in enumerate(streets) if
@@ -84,9 +81,11 @@ end
 """
     read_problem(path)
 
-Read and parse a [`City`](@ref) from a file located at `path`.
+Read and parse a City from a file located at `path`.
 
 The default path is an artifact containing the official challenge data.
+
+From HashCode2014
 """
 function read_problem(
     path = joinpath(artifact"HashCode2014Data", "HashCode2014Data-0.1", "paris_54000.txt"),
@@ -100,7 +99,9 @@ end
 """
     write_city(city, path)
 
-Write a [`City`](@ref) to a file located at `path`.
+Write a City to a file located at `path`.
+
+From HashCode2014
 """
 function write_city(city::City, path)
     city_string = string(city)

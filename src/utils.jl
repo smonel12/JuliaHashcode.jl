@@ -1,12 +1,15 @@
 
 """
-is_feasible(solution, city[; verbose=false])
+    is_feasible(solution, city[; verbose=false])
+
 Check if `solution` satisfies the constraints for the instance defined by `city`.
 The following criteria are considered (taken from the problem statement):
 - the number of itineraries has to match the number of cars of `city`
 - the first junction of each itinerary has to be the starting junction of `city`
 - for each consecutive pair of junctions on an itinerary, a street connecting these junctions has to exist in `city` (if the street is one directional, it has to be traversed in the correct direction)
 - the duration of each itinerary has to be lower or equal to the total duration of `city`
+
+From HashCode2014
 """
 function is_feasible(itineraries::Vector{Vector{Int}}, city::City; verbose = false)
     n_cars = length(itineraries)
@@ -48,8 +51,11 @@ end
 
 """
     total_distance(solution, city)
+
 Compute the total distance of all itineraries in `solution` based on the street data from `city`.
 Streets visited several times are only counted once.
+
+From HashCode2014
 """
 function total_distance(itineraries::Vector{Vector{Int}}, city::City)
     L = 0
@@ -74,7 +80,10 @@ end
 
 """
     is_street_start(i, street)
+
 Check if junction `i` corresponds to a valid starting point of `street`.
+
+From HashCode2014
 """
 function is_street_start(i::Integer, street::Street)
     if i == street.endpointA
@@ -88,7 +97,10 @@ end
 
 """
     is_street(i, j, street)
+
 Check if the trip from junction `i` to junction `j` corresponds to a valid direction of `street`.
+
+From HashCode2014
 """
 function is_street(i::Integer, j::Integer, street::Street)
     if (i, j) == (street.endpointA, street.endpointB)
@@ -102,7 +114,10 @@ end
 
 """
     get_street_end(i, street)
+
 Retrieve the arrival endpoint of `street` when it starts at junction `i`.
+
+From HashCode2014
 """
 function get_street_end(i::Integer, street::Street)
     if i == street.endpointA

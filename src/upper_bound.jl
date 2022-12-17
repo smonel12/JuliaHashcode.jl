@@ -1,14 +1,22 @@
 using JuliaHashcode
 
-function find_upper_bound()
+"""
+    prove_upper_bound()
+
+Proves upper bound is valid for the problem.
+"""
+function prove_upper_bound()
     city = read_problem()
     n_cars = city.n_cars
     distance, duration = calculate_totals(city)
-    distance_per_car = distance / n_cars
-    duration_per_car = duration / n_cars
-    return distance_per_car < city.total_duration
+    return duration < city.total_duration
 end
 
+"""
+    calculate_totals(city)
+
+Calculate total street distance and street durations for the entire city.
+"""
 function calculate_totals(city::City)
     total = 0
     duration = 0
@@ -17,8 +25,4 @@ function calculate_totals(city::City)
         duration += street.duration
     end
     return total, duration
-end
-
-function calculate_shortest_path(city::City)
-    return starting = city.start_point
 end

@@ -20,7 +20,7 @@ DocMeta.setdocmeta!(JuliaHashcode, :DocTestSetup, :(using JuliaHashcode); recurs
     end
 
     @testset verbose = true "Get upper bound" begin
-        total = find_upper_bound()
+        @test prove_upper_bound()
     end
 
     @testset verbose = true "Small instance" begin

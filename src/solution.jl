@@ -4,7 +4,7 @@
 Store a set of itineraries, one for each car.
 
 # Fields
-- `city::City`: 
+- `city::City`: Set of parameters from problem
 - `itineraries::Vector{Vector{Int}}`: each itinerary is a vector of junction indices
 - `feasible::Bool`: tells if the solution is feasible given the city
 - `total::Int`: total is the total distance the cars travel in the solution
@@ -41,8 +41,11 @@ function Base.string(solution::Solution)
 end
 
 """
-read_solution(solution, path)
+    read_solution(solution, path)
+
 Read and parse a [`Solution`](@ref) from a file located at `path`.
+
+From HashCode2014
 """
 function read_solutions(city::City, path)
     solution_string = open(path, "r") do file
@@ -66,8 +69,11 @@ function read_solutions(city::City, path)
 end
 
 """
-write_solution(solution, path)
+    write_solution(solution, path)
+
 Write a [`Solution`](@ref) to a file located at `path`.
+
+From HashCode2014
 """
 function write_solutions(solution::Solution, path)
     solution_string = string(solution)
