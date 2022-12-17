@@ -8,7 +8,7 @@ The following criteria are considered (taken from the problem statement):
 - for each consecutive pair of junctions on an itinerary, a street connecting these junctions has to exist in `city` (if the street is one directional, it has to be traversed in the correct direction)
 - the duration of each itinerary has to be lower or equal to the total duration of `city`
 """
-function is_feasible(itineraries::Vector{Vector{Int}}, city::City; verbose=false)
+function is_feasible(itineraries::Vector{Vector{Int}}, city::City; verbose = false)
     n_cars = length(itineraries)
     if n_cars != city.n_cars
         verbose && @warn "Incoherent number of cars"
@@ -20,8 +20,8 @@ function is_feasible(itineraries::Vector{Vector{Int}}, city::City; verbose=false
                 return false
             else
                 duration = 0
-                for v in 1:(length(itinerary) - 1)
-                    i, j = itinerary[v], itinerary[v + 1]
+                for v = 1:(length(itinerary)-1)
+                    i, j = itinerary[v], itinerary[v+1]
                     exists = false
                     for street in city.streets
                         if is_street(i, j, street)
@@ -56,8 +56,8 @@ function total_distance(itineraries::Vector{Vector{Int}}, city::City)
     for street in city.streets
         visited = false
         for itinerary in itineraries
-            for v in 1:(length(itinerary) - 1)
-                i, j = itinerary[v], itinerary[v + 1]
+            for v = 1:(length(itinerary)-1)
+                i, j = itinerary[v], itinerary[v+1]
                 if is_street(i, j, street)
                     L += street.distance
                     visited = true

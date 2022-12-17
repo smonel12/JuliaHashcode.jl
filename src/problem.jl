@@ -3,7 +3,7 @@ using Graphs
 
 """
     City
-Store a city made of [`Junction`](@ref)s and [`Street`](@ref)s, along with additional instance parameters.
+Store a city made of [`Street`](@ref)s, along with additional instance parameters.
 # Fields
 - `total_duration::Int`: total time allotted for the car itineraries (in seconds)
 - `n_cars::Int`: number of cars in the fleet
@@ -27,14 +27,14 @@ function City(data::AbstractString)
     N, M, T, C, S = map(s -> parse(Int, s), split(lines[1]))
 
     streets = Vector{Street}(undef, M)
-    for j in 1:M
-        Aⱼ, Bⱼ, Dⱼ, Cⱼ, Lⱼ = map(s -> parse(Int, s), split(lines[1 + N + j]))
+    for j = 1:M
+        Aⱼ, Bⱼ, Dⱼ, Cⱼ, Lⱼ = map(s -> parse(Int, s), split(lines[1+N+j]))
         streets[j] = Street(;
-            endpointA=Aⱼ + 1,
-            endpointB=Bⱼ + 1,
-            bidirectional=Dⱼ == 2,
-            duration=Cⱼ,
-            distance=Lⱼ,
+            endpointA = Aⱼ + 1,
+            endpointB = Bⱼ + 1,
+            bidirectional = Dⱼ == 2,
+            duration = Cⱼ,
+            distance = Lⱼ,
         )
     end
 
@@ -60,12 +60,12 @@ function City(data::AbstractString)
     end
 
     city = City(;
-        total_duration=T,
-        n_cars=C,
-        start_point=S + 1,
-        neighboring_streets=neighbors,
-        streets=streets,
-        visited=visited,
+        total_duration = T,
+        n_cars = C,
+        start_point = S + 1,
+        neighboring_streets = neighbors,
+        streets = streets,
+        visited = visited,
     )
     return city
 end
@@ -77,7 +77,7 @@ function Base.string(city::City)
     for street in city.streets
         s *= string(street) * "\n"
     end
-    return chop(s; tail=1)
+    return chop(s; tail = 1)
 end
 
 """
@@ -88,7 +88,7 @@ Read and parse a [`City`](@ref) from a file located at `path`.
 The default path is an artifact containing the official challenge data.
 """
 function read_problem(
-    path=joinpath(artifact"HashCode2014Data", "HashCode2014Data-0.1", "paris_54000.txt")
+    path = joinpath(artifact"HashCode2014Data", "HashCode2014Data-0.1", "paris_54000.txt"),
 )
     city_string = open(path, "r") do file
         read(file, String)
@@ -98,6 +98,7 @@ end
 
 """
     write_city(city, path)
+
 Write a [`City`](@ref) to a file located at `path`.
 """
 function write_city(city::City, path)

@@ -19,7 +19,12 @@ end
 function Solution(city::City, itineraries::Vector{Vector{Int}})
     feasible = is_feasible(itineraries, city)
     total = total_distance(itineraries, city)
-    return Solution(; city=city, itineraries=itineraries, feasible=feasible, total=total)
+    return Solution(;
+        city = city,
+        itineraries = itineraries,
+        feasible = feasible,
+        total = total,
+    )
 end
 
 function Base.string(solution::Solution)
@@ -32,7 +37,7 @@ function Base.string(solution::Solution)
             s *= "$(i-1)\n"
         end
     end
-    return chop(s; tail=1)
+    return chop(s; tail = 1)
 end
 
 """
@@ -47,11 +52,11 @@ function read_solutions(city::City, path)
     cars = parse(Int, lines[1])
     itineraries = Vector{Vector{Int}}(undef, cars)
     k = 2
-    for car in 1:cars
+    for car = 1:cars
         junctions_visited = parse(Int, lines[k])
         itinerary = Vector{Int}(undef, junctions_visited)
-        for v in 1:junctions_visited
-            i = parse(Int, lines[k + v])
+        for v = 1:junctions_visited
+            i = parse(Int, lines[k+v])
             itinerary[v] = i + 1
         end
         itineraries[car] = itinerary
